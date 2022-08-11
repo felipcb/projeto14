@@ -43,18 +43,19 @@ describe('Testes da Funcionalidade Usuários', () => {
                url: 'usuarios',
                body: {
                     "nome": usuario,
-                    "email": "beatrizbarreto@ebac.com.br",
+                    "email": "beatriz%ebac.com.br",
                     "password": "teste",
                     "administrador": "true"
                },
                failOnStatusCode: false
           }).then((response) => {
                expect(response.status).to.equal(400)
-               expect(response.body.message).to.equal('Este email já está sendo usado')
+               expect(response.body.email).to.equal('email deve ser um email válido')
           })
      });
 
-     it('Deve editar um usuário previamente cadastrado', () => {
+     it.only('Deve editar um usuário previamente cadastrado', () => {
+          cy.cadastrarUsuario(usuario, email)
           cy.request('usuarios').then(response => {
                let id = response.body.usuarios[0]._id
                cy.request({
@@ -74,6 +75,7 @@ describe('Testes da Funcionalidade Usuários', () => {
      });
 
      it('Deve deletar um usuário previamente cadastrado', () => {
+          cy.cadastrarUsuario(usuario, email)
           cy.request('usuarios').then(response => {
                let id = response.body.usuarios[0]._id
                cy.request({
