@@ -53,6 +53,8 @@ Cypress.Commands.add('token', (email, senha) => {
  })
 
  Cypress.Commands.add('cadastrarUsuario' , (token, usuario, email) =>{
+    var usuario = `Usuario Ebac ${Math.floor(Math.random() * 1000000)}`
+    var email = `usuario${Math.floor(Math.random() * 1000000)}`
     cy.request({
         method: 'POST', 
         url: 'usuarios',

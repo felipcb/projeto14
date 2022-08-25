@@ -2,8 +2,8 @@
 import contract from "../contracts/usuarios.contract"
 
 describe('Testes da Funcionalidade Usuários', () => {
-     let usuario = `Usuario Ebac ${Math.floor(Math.random() * 1000000)}`
-     let email = `usuario${Math.floor(Math.random() * 1000000)}`
+     var usuario = `Usuario Ebac ${Math.floor(Math.random() * 1000000)}`
+     var email = `usuario${Math.floor(Math.random() * 1000000)}`
 
      it('Deve validar contrato de usuários', () => {
           cy.request('usuarios').then(response => {
@@ -54,16 +54,17 @@ describe('Testes da Funcionalidade Usuários', () => {
           })
      });
 
-     it.only('Deve editar um usuário previamente cadastrado', () => {
+     it('Deve editar um usuário previamente cadastrado', () => {
           cy.cadastrarUsuario(usuario, email)
-          cy.request('usuarios').then(response => {
-               let id = response.body.usuarios[0]._id
+               .then(response => {
+               let id = response.body._id
+
                cy.request({
                     method: 'PUT',
                     url: `usuarios/${id}`,
                     body: {
                          "nome": usuario + "1",
-                         "email": email + "@" + email + "ebac.com.br",
+                         "email": email + "9"+ "@" + "ebac.com.br",
                          "password": "teste",
                          "administrador": "true"
                     }
@@ -76,8 +77,8 @@ describe('Testes da Funcionalidade Usuários', () => {
 
      it('Deve deletar um usuário previamente cadastrado', () => {
           cy.cadastrarUsuario(usuario, email)
-          cy.request('usuarios').then(response => {
-               let id = response.body.usuarios[0]._id
+          .then(response => {
+               let id = response.body._id
                cy.request({
                     method: 'DELETE',
                     url: `usuarios/${id}`
