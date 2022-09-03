@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+/*/// <reference types="cypress" />
 import contrato from '../contracts/produtos.contract'
 
 describe('Testes da Funcionalidade Produtos', () => {
@@ -110,3 +110,4 @@ describe('Testes da Funcionalidade Produtos', () => {
         })
     });
 });
+*/

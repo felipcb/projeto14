@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+/*/// <reference types="cypress" />
 
 describe('Login', () => {
 
@@ -18,3 +18,4 @@ describe('Login', () => {
     });
 
 });
+*/
